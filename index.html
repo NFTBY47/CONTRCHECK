@@ -1,0 +1,418 @@
+[file name]: index.html
+[file content begin]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContrCheck — AI-проверка договоров недвижимости</title>
+    <meta name="description" content="Проверка договоров аренды, купли-продажи и ипотеки с помощью искусственного интеллекта. Обнаружение рисков, юридический анализ, рекомендации.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-file-contract logo-icon"></i>
+                    ContrCheck
+                </a>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#process">Процесс проверки</a></li>
+                        <li><a href="#audience">Для кого</a></li>
+                        <li><a href="#business">Для бизнеса</a></li>
+                        <li><a href="screens/upload.html" class="nav-button">Начать проверку</a></li>
+                    </ul>
+                </nav>
+                
+                <label class="hamburger" for="hamburger-input">
+                    <input type="checkbox" id="hamburger-input">
+                    <svg viewBox="0 0 32 32">
+                        <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                        <path class="line" d="M7 16 27 16"></path>
+                    </svg>
+                </label>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-file-contract logo-icon"></i>
+                    ContrCheck
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#features" class="mobile-menu-link">Возможности</a></li>
+                        <li><a href="#process" class="mobile-menu-link">Процесс проверки</a></li>
+                        <li><a href="#audience" class="mobile-menu-link">Для кого</a></li>
+                        <li><a href="#business" class="mobile-menu-link">Для бизнеса</a></li>
+                        <li><a href="screens/upload.html" class="mobile-menu-button">Начать проверку</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    AI-проверка договоров
+                </div>
+                
+                <h1>Проверка договоров недвижимости<br>с искусственным интеллектом</h1>
+                <p class="hero-subtitle">Анализ договоров аренды, купли-продажи и ипотеки на соответствие законодательству РФ.<br>Обнаружение рисков, рекомендации по исправлению, конфиденциальность данных.</p>
+                
+                <div class="hero-buttons">
+                    <a href="screens/upload.html" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Начать проверку
+                    </a>
+                    <a href="#features" class="btn btn-outline">
+                        <i class="fas fa-search"></i> Узнать подробнее
+                    </a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">>90%</div>
+                        <div class="stat-text">договоров содержат<br>юридические риски</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2-5 мин</div>
+                        <div class="stat-text">среднее время<br>AI-анализа</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-text">конфиденциальность<br>данных</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section">
+            <div class="container">
+                <h2 class="section-title">Возможности платформы</h2>
+                <p class="section-subtitle">Comprehensive AI-powered contract analysis with advanced features</p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="tools">
+                            <div class="circle">
+                                <span class="red box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="yellow box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="green box"></span>
+                            </div>
+                        </div>
+                        <div class="card__content">
+                            <div class="card-icon">
+                                <i class="fas fa-gavel"></i>
+                            </div>
+                            <h3>Юридический анализ</h3>
+                            <p>Проверка договора на соответствие Гражданскому кодексу, Жилищному кодексу и другим нормативным актам РФ.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="tools">
+                            <div class="circle">
+                                <span class="red box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="yellow box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="green box"></span>
+                            </div>
+                        </div>
+                        <div class="card__content">
+                            <div class="card-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>Диалог с ИИ</h3>
+                            <p>Обсуждение каждого пункта договора с искусственным интеллектом. Получение разъяснений на понятном языке.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="tools">
+                            <div class="circle">
+                                <span class="red box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="yellow box"></span>
+                            </div>
+                            <div class="circle">
+                                <span class="green box"></span>
+                            </div>
+                        </div>
+                        <div class="card__content">
+                            <div class="card-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <h3>Исправление и экспорт</h3>
+                            <p>Редактирование проблемных пунктов и скачивание исправленной версии договора в формате PDF.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section id="process" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title">Процесс проверки</h2>
+                <p class="section-subtitle">Three simple steps to secure your contract</p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Загрузка документа</h3>
+                            <p>Загрузите договор в формате PDF, DOC или DOCX. Максимальный размер файла — 10 МБ.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>AI-анализ</h3>
+                            <p>Искусственный интеллект анализирует каждый пункт договора, проверяя соответствие законодательству.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Результат и рекомендации</h3>
+                            <p>Получите подробный отчёт с выделенными рисками и рекомендациями по исправлению.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: 60px;">
+                    <a href="screens/upload.html" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Загрузить договор для проверки
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audience -->
+        <section id="audience" class="section">
+            <div class="container">
+                <h2 class="section-title">Для кого предназначен сервис</h2>
+                <p class="section-subtitle">Professional contract analysis for individuals and families</p>
+                
+                <div class="cards-grid">
+                    <div class="audience-card">
+                        <div class="audience-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Арендаторы жилья</h3>
+                        <p>Проверка договоров аренды квартир, комнат и апартаментов перед подписанием.</p>
+                        <ul class="audience-list">
+                            <li>Обнаружение скрытых условий</li>
+                            <li>Проверка соответствия ЖК РФ</li>
+                            <li>Рекомендации по защите прав</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="audience-card">
+                        <div class="audience-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Покупатели недвижимости</h3>
+                        <p>Анализ договоров купли-продажи, в том числе договоров долевого участия.</p>
+                        <ul class="audience-list">
+                            <li>Проверка условий сделки</li>
+                            <li>Обнаружение рискованных пунктов</li>
+                            <li>Защита финансовых интересов</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="audience-card">
+                        <div class="audience-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Семьи с ипотекой</h3>
+                        <p>Комплексная проверка ипотечных договоров и сопутствующих документов.</p>
+                        <ul class="audience-list">
+                            <li>Анализ кредитных условий</li>
+                            <li>Проверка страховых договоров</li>
+                            <li>Выявление скрытых комиссий</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business -->
+        <section id="business" class="section section-dark">
+            <div class="container">
+                <h2 class="section-title">Для риелторских агентств</h2>
+                <p class="section-subtitle">Enterprise solutions for real estate professionals</p>
+                
+                <div class="business-grid">
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Повышение эффективности</h3>
+                        <p>Автоматизация проверки договоров сокращает время на анализ документов.</p>
+                    </div>
+                    
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Снижение рисков</h3>
+                        <p>Минимизация юридических рисков и спорных ситуаций с клиентами.</p>
+                    </div>
+                    
+                    <div class="business-card">
+                        <div class="business-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Укрепление репутации</h3>
+                        <p>Доверие клиентов благодаря прозрачности и дополнительной защите.</p>
+                    </div>
+                </div>
+                
+                <div class="business-cta">
+                    <h3>Интересует корпоративное решение?</h3>
+                    <p>API для интеграции, белая маркировка, статистика и аналитика.</p>
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-briefcase"></i> Обсудить сотрудничество
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security -->
+        <section class="section">
+            <div class="container">
+                <div class="security-section">
+                    <div class="security-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="security-content">
+                        <h2>Конфиденциальность и безопасность</h2>
+                        <p>Все загруженные документы и результаты анализа полностью удаляются с наших серверов после завершения проверки. Мы не храним договоры, персональные данные и историю проверок.</p>
+                        <div class="security-points">
+                            <div class="security-point">
+                                <i class="fas fa-check"></i>
+                                <span>Данные не хранятся</span>
+                            </div>
+                            <div class="security-point">
+                                <i class="fas fa-check"></i>
+                                <span>Шифрование передачи</span>
+                            </div>
+                            <div class="security-point">
+                                <i class="fas fa-check"></i>
+                                <span>Анонимная проверка</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section section-cta">
+            <div class="container">
+                <div class="final-cta">
+                    <h2>Начните проверку договора</h2>
+                    <p>Загрузите документ для AI-анализа. Получите детальный отчёт с рекомендациями.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="screens/upload.html" class="btn btn-primary btn-large">
+                            <i class="fas fa-file-upload"></i> Загрузить договор
+                        </a>
+                        <a href="screens/report.html" class="btn btn-outline btn-large">
+                            <i class="fas fa-file-alt"></i> Пример отчёта
+                        </a>
+                    </div>
+                    
+                    <div class="cta-note">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Бесплатная проверка первого договора. Без регистрации.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-file-contract logo-icon"></i>
+                        ContrCheck
+                    </a>
+                    <p>AI-платформа для проверки договоров недвижимости. Юридический анализ, рекомендации, безопасность.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Сервис</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#process">Процесс проверки</a></li>
+                        <li><a href="#audience">Для кого</a></li>
+                        <li><a href="screens/upload.html">Начать проверку</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#business">Для бизнеса</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Документы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@contrcheck.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт, 9:00-18:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ContrCheck. Все права защищены.</p>
+                <div class="footer-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
+[file content end]

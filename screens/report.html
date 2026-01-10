@@ -1,0 +1,629 @@
+[file name]: screens/report.html
+[file content begin]
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример отчёта | ContrCheck</title>
+    <meta name="description" content="Пример AI-анализа договора аренды. Демонстрация возможностей платформы ContrCheck.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .report-header {
+            padding: 180px 0 60px;
+            text-align: center;
+        }
+        
+        .report-header h1 {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .report-header p {
+            font-size: 18px;
+            color: #cccccc;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .report-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cccccc;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .meta-item i {
+            color: #4dabf7;
+        }
+        
+        .report-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 100px;
+        }
+        
+        .report-summary {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .report-summary h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .report-summary > p {
+            color: #999999;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .summary-card {
+            text-align: center;
+            padding: 25px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .summary-card.critical {
+            border-left: 4px solid #ff605c;
+        }
+        
+        .summary-card.warning {
+            border-left: 4px solid #ffbd44;
+        }
+        
+        .summary-card.success {
+            border-left: 4px solid #00ca4e;
+        }
+        
+        .summary-value {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card.critical .summary-value {
+            color: #ff605c;
+        }
+        
+        .summary-card.warning .summary-value {
+            color: #ffbd44;
+        }
+        
+        .summary-card.success .summary-value {
+            color: #00ca4e;
+        }
+        
+        .summary-label {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+        
+        .document-preview {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .document-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .document-title i {
+            color: #4dabf7;
+        }
+        
+        .document-text {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 40px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            white-space: pre-line;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #cccccc;
+        }
+        
+        .highlight {
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .highlight-red {
+            background-color: rgba(255, 96, 92, 0.2);
+            border-left: 3px solid #ff605c;
+            margin-left: -3px;
+        }
+        
+        .highlight-yellow {
+            background-color: rgba(255, 189, 68, 0.2);
+            border-left: 3px solid #ffbd44;
+            margin-left: -3px;
+        }
+        
+        .highlight-green {
+            background-color: rgba(0, 202, 78, 0.2);
+            border-left: 3px solid #00ca4e;
+            margin-left: -3px;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #999999;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+        
+        .issues-list {
+            margin-top: 50px;
+        }
+        
+        .issues-list h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .issue-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 4px solid;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .issue-card.critical {
+            border-left-color: #ff605c;
+        }
+        
+        .issue-card.warning {
+            border-left-color: #ffbd44;
+        }
+        
+        .issue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .issue-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .issue-severity {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .critical .issue-severity {
+            background: rgba(255, 96, 92, 0.2);
+            color: #ff605c;
+        }
+        
+        .warning .issue-severity {
+            background: rgba(255, 189, 68, 0.2);
+            color: #ffbd44;
+        }
+        
+        .issue-card p {
+            color: #cccccc;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .issue-law {
+            color: #4dabf7;
+            font-size: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .issue-recommendation {
+            background: rgba(77, 171, 247, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #4dabf7;
+        }
+        
+        .recommendation-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4dabf7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .issue-recommendation p {
+            color: #cccccc;
+            line-height: 1.6;
+        }
+        
+        .back-to-main {
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            color: #ff605c;
+            margin: 40px 0 20px;
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-file-contract logo-icon"></i>
+                    ContrCheck
+                </a>
+                
+                <nav class="desktop-nav">
+                    <ul>
+                        <li><a href="../index.html#features">Возможности</a></li>
+                        <li><a href="../index.html#process">Процесс проверки</a></li>
+                        <li><a href="../index.html#audience">Для кого</a></li>
+                        <li><a href="upload.html" class="nav-button">Проверить договор</a></li>
+                    </ul>
+                </nav>
+                
+                <label class="hamburger" for="hamburger-input">
+                    <input type="checkbox" id="hamburger-input">
+                    <svg viewBox="0 0 32 32">
+                        <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                        <path class="line" d="M7 16 27 16"></path>
+                    </svg>
+                </label>
+            </div>
+        </div>
+        
+        <!-- Мобильное меню -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-content">
+                <a href="../index.html" class="logo">
+                    <i class="fas fa-file-contract logo-icon"></i>
+                    ContrCheck
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html#features" class="mobile-menu-link">Возможности</a></li>
+                        <li><a href="../index.html#process" class="mobile-menu-link">Процесс проверки</a></li>
+                        <li><a href="../index.html#audience" class="mobile-menu-link">Для кого</a></li>
+                        <li><a href="upload.html" class="mobile-menu-button">Проверить договор</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Report Header -->
+        <section class="report-header">
+            <div class="container">
+                <div class="hero-badge">
+                    <i class="fas fa-file-alt"></i>
+                    Пример отчёта
+                </div>
+                
+                <h1>Пример AI-анализа договора аренды</h1>
+                <p>Демонстрация возможностей платформы ContrCheck. Анализ договора аренды жилого помещения с выделением рисков и рекомендациями по исправлению.</p>
+                
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-file-contract"></i>
+                        Тип: Договор аренды жилья
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        Дата анализа: 15.11.2023
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        Время анализа: 47 секунд
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Content -->
+        <div class="report-content">
+            <!-- Summary -->
+            <div class="report-summary">
+                <h2>Сводка результатов анализа</h2>
+                <p>Искусственный интеллект обнаружил 12 потенциальных проблем в договоре, из которых 3 критических, 5 средних рисков и 4 незначительных замечания.</p>
+                
+                <div class="summary-grid">
+                    <div class="summary-card critical">
+                        <div class="summary-value">3</div>
+                        <div class="summary-label">Критических риска</div>
+                        <p style="font-size: 14px; margin-top: 10px; color: #999;">Требуют немедленного исправления</p>
+                    </div>
+                    
+                    <div class="summary-card warning">
+                        <div class="summary-value">5</div>
+                        <div class="summary-label">Средних риска</div>
+                        <p style="font-size: 14px; margin-top: 10px; color: #999;">Рекомендуется исправить</p>
+                    </div>
+                    
+                    <div class="summary-card success">
+                        <div class="summary-value">23</div>
+                        <div class="summary-label">Пунктов в порядке</div>
+                        <p style="font-size: 14px; margin-top: 10px; color: #999;">Соответствуют законодательству</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Document Preview -->
+            <div class="document-preview">
+                <div class="document-title">
+                    <i class="fas fa-file-alt"></i>
+                    Анализ текста договора
+                </div>
+                
+                <div class="document-text">
+                    <h3>ДОГОВОР АРЕНДЫ ЖИЛОГО ПОМЕЩЕНИЯ</h3>
+                    
+                    г. Москва
+                    «15» ноября 2023 г.
+                    
+                    <span class="highlight highlight-green">Гражданин РФ Иванов Иван Иванович, именуемый в дальнейшем "Арендодатель", с одной стороны, и</span>
+                    <span class="highlight highlight-red">гражданин РФ Петров Петр Петрович, именуемый в дальнейшем "Арендатор", с другой стороны, заключили настоящий договор о нижеследующем:</span>
+                    
+                    1. <span class="highlight highlight-green">Арендодатель предоставляет Арендатору во временное владение и пользование жилое помещение, расположенное по адресу: г. Москва, ул. Примерная, д. 10, кв. 25</span>, общей площадью 65 кв.м., для проживания.
+                    
+                    2. <span class="highlight highlight-red">Срок действия договора: 11 месяцев без возможности продления.</span>
+                    
+                    3. <span class="highlight highlight-yellow">Размер арендной платы составляет 80 000 (восемьдесят тысяч) рублей в месяц.</span> Оплата производится Арендатором ежемесячно не позднее 5 числа каждого месяца.
+                    
+                    4. <span class="highlight highlight-red">Арендодатель вправе в одностороннем порядке расторгнуть договор с уведомлением за 3 дня.</span>
+                    
+                    5. <span class="highlight highlight-yellow">Арендатор обязан оплачивать все коммунальные услуги, включая капитальный ремонт.</span>
+                    
+                    6. <span class="highlight highlight-green">Арендатор обязуется использовать помещение исключительно для проживания, поддерживать его в надлежащем состоянии, производить текущий ремонт за свой счет.</span>
+                    
+                    7. <span class="highlight highlight-red">При нарушении сроков оплаты более чем на 5 дней, Арендодатель вправе выселить Арендатора без решения суда.</span>
+                    
+                    8. <span class="highlight highlight-yellow">Настоящий договор составлен в одном экземпляре и хранится у Арендодателя.</span>
+                    
+                    9. <span class="highlight highlight-green">Все споры и разногласия решаются путем переговоров, а при недостижении согласия - в судебном порядке по месту нахождения имущества.</span>
+                    
+                    10. <span class="highlight highlight-yellow">Арендатор не вправе сдавать помещение в субаренду без письменного согласия Арендодателя.</span>
+                    
+                    <span class="highlight highlight-green">Подписи сторон:</span>
+                    
+                    Арендодатель: _________________ /Иванов И.И./
+                    Арендатор: _________________ /Петров П.П./
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: rgba(255, 96, 92, 0.2); border-left: 3px solid #ff605c;"></div>
+                        <span>Критический риск</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: rgba(255, 189, 68, 0.2); border-left: 3px solid #ffbd44;"></div>
+                        <span>Средний риск</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: rgba(0, 202, 78, 0.2); border-left: 3px solid #00ca4e;"></div>
+                        <span>В порядке</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Issues List -->
+            <div class="issues-list">
+                <h2>Обнаруженные проблемы и рекомендации</h2>
+                
+                <!-- Critical Issues -->
+                <h3 class="section-title">
+                    <i class="fas fa-exclamation-circle"></i>
+                    Критические риски
+                </h3>
+                
+                <div class="issue-card critical">
+                    <div class="issue-header">
+                        <div class="issue-title">
+                            <i class="fas fa-ban"></i>
+                            Одностороннее расторжение договора
+                        </div>
+                        <div class="issue-severity">КРИТИЧЕСКИЙ</div>
+                    </div>
+                    <p>Пункт 4 договора позволяет Арендодателю расторгнуть договор в одностороннем порядке с уведомлением за 3 дня, что противоречит Гражданскому кодексу РФ.</p>
+                    <div class="issue-law">
+                        <i class="fas fa-gavel"></i>
+                        Нарушение: ст. 610 ГК РФ, ст. 687 ГК РФ
+                    </div>
+                    <div class="issue-recommendation">
+                        <div class="recommendation-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Рекомендация
+                        </div>
+                        <p>Исключить пункт об одностороннем расторжении или привести в соответствие с законодательством. Для расторжения договора аренды жилого помещения требуется решение суда.</p>
+                    </div>
+                </div>
+                
+                <!-- Warning Issues -->
+                <h3 class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Средние риски
+                </h3>
+                
+                <div class="issue-card warning">
+                    <div class="issue-header">
+                        <div class="issue-title">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Оплата капитального ремонта
+                        </div>
+                        <div class="issue-severity">СРЕДНИЙ</div>
+                    </div>
+                    <p>Пункт 5 обязывает Арендатора оплачивать капитальный ремонт, что является обязанностью собственника (Арендодателя).</p>
+                    <div class="issue-law">
+                        <i class="fas fa-gavel"></i>
+                        Нарушение: ст. 210 ГК РФ, ст. 158 ЖК РФ
+                    </div>
+                    <div class="issue-recommendation">
+                        <div class="recommendation-title">
+                            <i class="fas fa-lightbulb"></i>
+                            Рекомендация
+                        </div>
+                        <p>Исключить обязанность по оплате капитального ремонта из обязанностей Арендатора. Арендатор должен оплачивать только текущие коммунальные услуги.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to main -->
+            <div class="back-to-main">
+                <a href="../index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Вернуться на главную
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="../index.html" class="logo">
+                        <i class="fas fa-file-contract logo-icon"></i>
+                        ContrCheck
+                    </a>
+                    <p>AI-платформа для проверки договоров недвижимости. Юридический анализ, рекомендации, безопасность.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Ресурсы</h4>
+                    <ul>
+                        <li><a href="report.html">Пример отчёта</a></li>
+                        <li><a href="../index.html#process">Процесс проверки</a></li>
+                        <li><a href="../index.html#audience">Для кого</a></li>
+                        <li><a href="../index.html#business">Для бизнеса</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><i class="fas fa-question-circle"></i> FAQ</li>
+                        <li><i class="fas fa-headset"></i> Помощь</li>
+                        <li><i class="fas fa-book"></i> Документация</li>
+                        <li><i class="fas fa-comments"></i> Обратная связь</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> reports@contrcheck.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (495) 123-45-67</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва</li>
+                        <li><i class="fas fa-clock"></i> Пн-Пт, 9:00-18:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ContrCheck. Все права защищены.</p>
+                <div class="footer-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
+[file content end]
