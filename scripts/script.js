@@ -1,41 +1,109 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Hamburger menu functionality
-    const hamburgerInput = document.getElementById('hamburger-input');
+    const hamburgerButton = document.getElementById('hamburger-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
     
-    if (hamburgerInput && mobileMenu) {
-        hamburgerInput.addEventListener('change', () => {
-            if (hamburgerInput.checked) {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
+    let isMenuOpen = false;
+    let isAnimating = false;
+    
+    // Функция открытия меню
+    function openMenu() {
+        if (isAnimating || isMenuOpen) return;
+        
+        isAnimating = true;
+        isMenuOpen = true;
+        
+        // Добавляем классы
+        mobileMenu.classList.add('active');
+        hamburgerButton.classList.add('active');
+        
+        // Блокируем скролл страницы
+        document.body.classList.add('no-scroll');
+        
+        // Обновляем ARIA атрибуты
+        hamburgerButton.setAttribute('aria-expanded', 'true');
+        
+        setTimeout(() => {
+            isAnimating = false;
+        }, 300);
+    }
+    
+    // Функция закрытия меню
+    function closeMenu() {
+        if (isAnimating || !isMenuOpen) return;
+        
+        isAnimating = true;
+        
+        // Убираем классы
+        mobileMenu.classList.remove('active');
+        hamburgerButton.classList.remove('active');
+        
+        // Обновляем ARIA атрибуты
+        hamburgerButton.setAttribute('aria-expanded', 'false');
+        
+        setTimeout(() => {
+            // Возвращаем скролл
+            document.body.classList.remove('no-scroll');
+            isMenuOpen = false;
+            isAnimating = false;
+        }, 300);
+    }
+    
+    // Open menu
+    if (hamburgerButton) {
+        hamburgerButton.addEventListener('click', () => {
+            if (!isMenuOpen) {
+                openMenu();
             } else {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Close menu when clicking on a link
-        const mobileLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-button');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburgerInput.checked = false;
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // Close menu when clicking outside
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) {
-                hamburgerInput.checked = false;
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
+                closeMenu();
             }
         });
     }
     
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Close menu with X button
+    if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', () => {
+            closeMenu();
+        });
+    }
+    
+    // Close menu when clicking on overlay
+    if (mobileMenuOverlay) {
+        mobileMenuOverlay.addEventListener('click', () => {
+            closeMenu();
+        });
+    }
+    
+    // Close menu when clicking on a link
+    const mobileLinks = document.querySelectorAll('.mobile-menu-link, .mobile-menu-button');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (link.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                closeMenu();
+                
+                // Ждем закрытия меню перед скроллом
+                setTimeout(() => {
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }, 300);
+            } else {
+                closeMenu();
+            }
+        });
+    });
+    
+    // Smooth scroll for anchor links (desktop navigation)
+    document.querySelectorAll('.desktop-nav a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
@@ -46,29 +114,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetElement = document.querySelector(href);
                 
                 if (targetElement) {
-                    // Close mobile menu if open
-                    if (hamburgerInput && hamburgerInput.checked) {
-                        hamburgerInput.checked = false;
-                        if (mobileMenu) mobileMenu.classList.remove('active');
-                        document.body.style.overflow = '';
-                        
-                        // Wait for menu to close before scrolling
-                        setTimeout(() => {
-                            targetElement.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }, 300);
-                    } else {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             }
         });
     });
+    
+    // Закрытие по клавише Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMenu();
+        }
+    });
+    
+    // Закрытие меню при изменении размера окна (на десктоп)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth >= 768 && isMenuOpen) {
+                closeMenu();
+            }
+        }, 250);
+    });
+    
+    // Floating testimonials animation
+    function initTestimonialsAnimation() {
+        const columns = document.querySelectorAll('.testimonials-column-content');
+        
+        columns.forEach(column => {
+            const speed = column.getAttribute('data-speed') || 15;
+            const contentHeight = column.scrollHeight / 2;
+            const containerHeight = column.parentElement.offsetHeight;
+            
+            // Adjust animation duration based on content height
+            const duration = (contentHeight / containerHeight) * speed;
+            
+            column.style.animationDuration = `${duration}s`;
+            
+            // Pause animation on hover
+            column.addEventListener('mouseenter', () => {
+                column.style.animationPlayState = 'paused';
+            });
+            
+            column.addEventListener('mouseleave', () => {
+                column.style.animationPlayState = 'running';
+            });
+        });
+    }
+    
+    // Initialize testimonials animation
+    initTestimonialsAnimation();
     
     // Animate elements on scroll
     const observerOptions = {
@@ -85,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
     
     // Observe elements
-    const elementsToAnimate = document.querySelectorAll('.card, .audience-card, .business-card, .process-step');
+    const elementsToAnimate = document.querySelectorAll('.card, .audience-card, .business-card, .process-step, .testimonial-card');
     
     elementsToAnimate.forEach(el => {
         el.style.opacity = '0';
@@ -106,51 +205,35 @@ document.addEventListener('DOMContentLoaded', () => {
     
     elementsToAnimate.forEach(el => animationObserver.observe(el));
     
-    // Header scroll effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (header) {
-            if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        }
-    });
-    
-    // Set current year in footer (optional)
+    // Set current year in footer
     const yearElement = document.querySelector('footer .footer-bottom p');
     if (yearElement) {
         const currentYear = new Date().getFullYear();
         yearElement.innerHTML = yearElement.innerHTML.replace('2023', currentYear);
     }
     
-    // Add skip to content link for accessibility
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main';
-    skipLink.className = 'skip-link';
-    skipLink.textContent = 'Перейти к основному содержимому';
-    skipLink.style.position = 'absolute';
-    skipLink.style.top = '-40px';
-    skipLink.style.left = '0';
-    skipLink.style.background = '#4dabf7';
-    skipLink.style.color = '#000';
-    skipLink.style.padding = '8px';
-    skipLink.style.zIndex = '1001';
-    skipLink.style.textDecoration = 'none';
+    // Улучшенная анимация для кнопок при клике
+    const allButtons = document.querySelectorAll('.brutalist-button:not(.hamburger):not(.mobile-menu-close), .btn');
     
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.top = '0';
+    allButtons.forEach(button => {
+        button.addEventListener('mousedown', function() {
+            this.style.transform = 'translateY(1px)';
+            this.style.boxShadow = '0 2px 0 var(--black)';
+        });
+        
+        button.addEventListener('mouseup', function() {
+            if (this.matches(':hover')) {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = 'var(--shadow)';
+            } else {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            }
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+        });
     });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-    
-    // Set main content id
-    const mainElement = document.querySelector('main');
-    if (mainElement && !mainElement.id) {
-        mainElement.id = 'main';
-        mainElement.tabIndex = -1;
-    }
 });
