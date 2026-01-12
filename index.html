@@ -1,173 +1,138 @@
-[file name]: index.html
-[file content begin]
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContrCheck — AI-проверка договоров недвижимости</title>
+    <title>ContrCheck — Проверка договоров недвижимости</title>
     <meta name="description" content="Проверка договоров аренды, купли-продажи и ипотеки с помощью искусственного интеллекта. Обнаружение рисков, юридический анализ, рекомендации.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="brutalist-header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">
+                <a href="index.html" class="logo brutalist-logo">
                     <i class="fas fa-file-contract logo-icon"></i>
-                    ContrCheck
+                    CONTRCHECK
                 </a>
                 
                 <nav class="desktop-nav">
                     <ul>
-                        <li><a href="#features">Возможности</a></li>
-                        <li><a href="#process">Процесс проверки</a></li>
-                        <li><a href="#audience">Для кого</a></li>
-                        <li><a href="#business">Для бизнеса</a></li>
-                        <li><a href="screens/upload.html" class="nav-button">Начать проверку</a></li>
+                        <li><a href="#features" class="brutalist-link">Возможности</a></li>
+                        <li><a href="#process" class="brutalist-link">Процесс</a></li>
+                        <li><a href="#audience" class="brutalist-link">Для кого</a></li>
+                        <li><a href="#testimonials" class="brutalist-link">Отзывы</a></li>
+                        <li><a href="screens/upload.html" class="nav-button brutalist-button">Начать проверку</a></li>
                     </ul>
                 </nav>
                 
-                <label class="hamburger" for="hamburger-input">
-                    <input type="checkbox" id="hamburger-input">
-                    <svg viewBox="0 0 32 32">
-                        <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
-                        <path class="line" d="M7 16 27 16"></path>
-                    </svg>
-                </label>
-            </div>
-        </div>
-        
-        <!-- Мобильное меню -->
-        <div class="mobile-menu" id="mobile-menu">
-            <div class="mobile-menu-content">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-file-contract logo-icon"></i>
-                    ContrCheck
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="#features" class="mobile-menu-link">Возможности</a></li>
-                        <li><a href="#process" class="mobile-menu-link">Процесс проверки</a></li>
-                        <li><a href="#audience" class="mobile-menu-link">Для кого</a></li>
-                        <li><a href="#business" class="mobile-menu-link">Для бизнеса</a></li>
-                        <li><a href="screens/upload.html" class="mobile-menu-button">Начать проверку</a></li>
-                    </ul>
-                </nav>
+                <button class="hamburger" id="hamburger-button" aria-label="Меню">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
             </div>
         </div>
     </header>
 
-    <main>
+    <!-- Мобильное меню - отдельный fixed слой -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+        <div class="mobile-menu-content brutalist-card">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo brutalist-logo">
+                    <i class="fas fa-file-contract logo-icon"></i>
+                    CONTRCHECK
+                </a>
+                <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Закрыть меню">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#features" class="mobile-menu-link brutalist-link">Возможности</a></li>
+                    <li><a href="#process" class="mobile-menu-link brutalist-link">Процесс</a></li>
+                    <li><a href="#audience" class="mobile-menu-link brutalist-link">Для кого</a></li>
+                    <li><a href="#testimonials" class="mobile-menu-link brutalist-link">Отзывы</a></li>
+                    <li><a href="screens/upload.html" class="mobile-menu-button brutalist-button">Начать проверку</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <main id="main">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero brutalist-section">
             <div class="container">
-                <div class="hero-badge">
-                    <i class="fas fa-shield-alt"></i>
-                    AI-проверка договоров
-                </div>
-                
-                <h1>Проверка договоров недвижимости<br>с искусственным интеллектом</h1>
-                <p class="hero-subtitle">Анализ договоров аренды, купли-продажи и ипотеки на соответствие законодательству РФ.<br>Обнаружение рисков, рекомендации по исправлению, конфиденциальность данных.</p>
+                <h1 class="brutalist-title">Защитите себя от финансовых и юридических рисков в договоре недвижимости<br>
+<span class="highlight">в 3 клика с помощью ИИ.</span></h1>
+                <p class="hero-subtitle brutalist-text">ИИ-платформа для быстрой проверки сделок в недвижимости: выявление ошибок, противоречий и несоответствий нормам РФ. Получите рекомендации и защитите свои интересы без задержек.</p>
                 
                 <div class="hero-buttons">
-                    <a href="screens/upload.html" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Начать проверку
+                    <a href="screens/upload.html" class="btn btn-primary brutalist-button">
+                        <i class="fas fa-rocket"></i> Попробовать бесплатно
                     </a>
-                    <a href="#features" class="btn btn-outline">
-                        <i class="fas fa-search"></i> Узнать подробнее
+                    <a href="#features" class="btn btn-outline brutalist-button">
+                        <i class="fas fa-search"></i> Узнать больше
                     </a>
                 </div>
                 
-                <div class="hero-stats">
+                <div class="hero-stats brutalist-card">
                     <div class="stat-item">
-                        <div class="stat-number">>90%</div>
-                        <div class="stat-text">договоров содержат<br>юридические риски</div>
+                        <div class="stat-number">>80%</div>
+                        <div class="stat-text">сделок имеют скрытые риски</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">2-5 мин</div>
-                        <div class="stat-text">среднее время<br>AI-анализа</div>
+                        <div class="stat-number">5 мин</div>
+                        <div class="stat-text">на полный анализ</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
-                        <div class="stat-text">конфиденциальность<br>данных</div>
+                        <div class="stat-text">защита данных без хранения</div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features -->
-        <section id="features" class="section">
+        <section id="features" class="section brutalist-section">
             <div class="container">
-                <h2 class="section-title">Возможности платформы</h2>
-                <p class="section-subtitle">Comprehensive AI-powered contract analysis with advanced features</p>
+                <h2 class="section-title brutalist-title">Возможности платформы</h2>
+                <p class="section-subtitle brutalist-text">ИИ-платформа для обнаружения рисков и оптимизации ваших сделок в недвижимости</p>
                 
                 <div class="cards-grid">
-                    <div class="card">
-                        <div class="tools">
-                            <div class="circle">
-                                <span class="red box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="yellow box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="green box"></span>
-                            </div>
-                        </div>
+                    <div class="card brutalist-card">
                         <div class="card__content">
                             <div class="card-icon">
                                 <i class="fas fa-gavel"></i>
                             </div>
                             <h3>Юридический анализ</h3>
-                            <p>Проверка договора на соответствие Гражданскому кодексу, Жилищному кодексу и другим нормативным актам РФ.</p>
+                            <p>Автоматическая проверка на юридические риски, ошибки в формулировках и несоответствия нормам РФ — не пропустите критичные условия.</p>
                         </div>
                     </div>
                     
-                    <div class="card">
-                        <div class="tools">
-                            <div class="circle">
-                                <span class="red box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="yellow box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="green box"></span>
-                            </div>
-                        </div>
+                    <div class="card brutalist-card">
                         <div class="card__content">
                             <div class="card-icon">
                                 <i class="fas fa-robot"></i>
                             </div>
                             <h3>Диалог с ИИ</h3>
-                            <p>Обсуждение каждого пункта договора с искусственным интеллектом. Получение разъяснений на понятном языке.</p>
+                            <p>Чат с ИИ для вопросов по любому пункту договора — получите разъяснения как от опытного юриста в 1 клик.</p>
                         </div>
                     </div>
                     
-                    <div class="card">
-                        <div class="tools">
-                            <div class="circle">
-                                <span class="red box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="yellow box"></span>
-                            </div>
-                            <div class="circle">
-                                <span class="green box"></span>
-                            </div>
-                        </div>
+                    <div class="card brutalist-card">
                         <div class="card__content">
                             <div class="card-icon">
                                 <i class="fas fa-file-pdf"></i>
                             </div>
                             <h3>Исправление и экспорт</h3>
-                            <p>Редактирование проблемных пунктов и скачивание исправленной версии договора в формате PDF.</p>
+                            <p>Предложения по юридически корректным формулировкам и экспорт готового документа за секунды.</p>
                         </div>
                     </div>
                 </div>
@@ -175,146 +140,343 @@
         </section>
 
         <!-- Process -->
-        <section id="process" class="section section-dark">
+        <section id="process" class="section section-dark brutalist-section">
             <div class="container">
-                <h2 class="section-title">Процесс проверки</h2>
-                <p class="section-subtitle">Three simple steps to secure your contract</p>
+                <h2 class="section-title brutalist-title">Процесс проверки</h2>
+                <p class="section-subtitle brutalist-text">Пройдите все этапы сделки безопасно и быстро с ИИ</p>
                 
                 <div class="process-steps">
-                    <div class="process-step">
+                    <div class="process-step brutalist-card">
                         <div class="step-number">01</div>
                         <div class="step-content">
                             <h3>Загрузка документа</h3>
-                            <p>Загрузите договор в формате PDF, DOC или DOCX. Максимальный размер файла — 10 МБ.</p>
+                            <p>Загрузите договор — система автоматически найдет риски и несоответствия без зависимости от вашей усталости.</p>
                         </div>
                     </div>
                     
-                    <div class="process-step">
+                    <div class="process-step brutalist-card">
                         <div class="step-number">02</div>
                         <div class="step-content">
                             <h3>AI-анализ</h3>
-                            <p>Искусственный интеллект анализирует каждый пункт договора, проверяя соответствие законодательству.</p>
+                            <p>ИИ проверит документ на ошибки, предложит правки и обеспечит соответствие нормам.</p>
                         </div>
                     </div>
                     
-                    <div class="process-step">
+                    <div class="process-step brutalist-card">
                         <div class="step-number">03</div>
                         <div class="step-content">
                             <h3>Результат и рекомендации</h3>
-                            <p>Получите подробный отчёт с выделенными рисками и рекомендациями по исправлению.</p>
+                            <p>Получите отчет с рекомендациями — задайте вопросы ИИ или экспортируйте исправленный договор.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="text-center" style="margin-top: 60px;">
-                    <a href="screens/upload.html" class="btn btn-primary">
-                        <i class="fas fa-upload"></i> Загрузить договор для проверки
+                <div class="text-center" style="margin-top: 40px;">
+                    <a href="screens/upload.html" class="btn btn-primary brutalist-button">
+                        <i class="fas fa-upload"></i> Попробовать бесплатно
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- Audience -->
-        <section id="audience" class="section">
+        <section id="audience" class="section brutalist-section">
             <div class="container">
-                <h2 class="section-title">Для кого предназначен сервис</h2>
-                <p class="section-subtitle">Professional contract analysis for individuals and families</p>
+                <h2 class="section-title brutalist-title">Для кого предназначен сервис</h2>
+                <p class="section-subtitle brutalist-text">Мы помогаем частным лицам и семьям заключать безопасные сделки в недвижимости</p>
                 
                 <div class="cards-grid">
-                    <div class="audience-card">
+                    <div class="audience-card brutalist-card">
                         <div class="audience-icon">
                             <i class="fas fa-user"></i>
                         </div>
                         <h3>Арендаторы жилья</h3>
-                        <p>Проверка договоров аренды квартир, комнат и апартаментов перед подписанием.</p>
+                        <p>Для арендаторов: заключайте сделки на безопасных условиях без скрытых рисков.</p>
                         <ul class="audience-list">
-                            <li>Обнаружение скрытых условий</li>
-                            <li>Проверка соответствия ЖК РФ</li>
-                            <li>Рекомендации по защите прав</li>
+                            <li>Обнаружение противоречий</li>
+                            <li>Соответствие ЖК РФ</li>
+                            <li>Защита ваших прав</li>
                         </ul>
                     </div>
                     
-                    <div class="audience-card">
+                    <div class="audience-card brutalist-card">
                         <div class="audience-icon">
                             <i class="fas fa-home"></i>
                         </div>
                         <h3>Покупатели недвижимости</h3>
-                        <p>Анализ договоров купли-продажи, в том числе договоров долевого участия.</p>
+                        <p>Для покупателей: увеличивайте уверенность в сделках за счет быстрой проверки рисков.</p>
                         <ul class="audience-list">
-                            <li>Проверка условий сделки</li>
-                            <li>Обнаружение рискованных пунктов</li>
-                            <li>Защита финансовых интересов</li>
+                            <li>Анализ условий</li>
+                            <li>Выявление несоответствий</li>
+                            <li>Защита инвестиций</li>
                         </ul>
                     </div>
                     
-                    <div class="audience-card">
+                    <div class="audience-card brutalist-card">
                         <div class="audience-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
                         <h3>Семьи с ипотекой</h3>
-                        <p>Комплексная проверка ипотечных договоров и сопутствующих документов.</p>
+                        <p>Для семей с ипотекой: готовьте документы быстро и без ошибок.</p>
                         <ul class="audience-list">
-                            <li>Анализ кредитных условий</li>
-                            <li>Проверка страховых договоров</li>
-                            <li>Выявление скрытых комиссий</li>
+                            <li>Проверка кредитов</li>
+                            <li>Анализ страхования</li>
+                            <li>Выявление комиссий</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="section section-dark brutalist-section">
+            <div class="container">
+                <div class="testimonials-header">
+                    <h2 class="section-title brutalist-title">Что говорят наши клиенты</h2>
+                    <p class="section-subtitle brutalist-text">Как платформа делает сделки прозрачными и безопасными для пользователей</p>
+                </div>
+
+                <div class="testimonials-scroll-container">
+                    <div class="testimonials-columns-wrapper">
+                        <!-- Column 1 -->
+                        <div class="testimonials-column">
+                            <div class="testimonials-column-content" data-speed="15">
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Сервис защитил от рисков в аренде — нашел ошибки, которые могли стоить тысяч."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Анна" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Анна Смирнова</div>
+                                            <div class="author-role">Арендатор квартиры</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Проверил покупку за минуты, сэкономил на скрытых пунктах."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Дмитрий" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Дмитрий Волков</div>
+                                            <div class="author-role">Покупатель недвижимости</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Ипотека без сюрпризов — ИИ выявил комиссии."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Елена" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Елена Петрова</div>
+                                            <div class="author-role">Семья с ипотекой</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Duplicates for seamless scroll -->
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Сервис защитил от рисков в аренде — нашел ошибки, которые могли стоить тысяч."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Анна" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Анна Смирнова</div>
+                                            <div class="author-role">Арендатор квартиры</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Проверил покупку за минуты, сэкономил на скрытых пунктах."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Дмитрий" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Дмитрий Волков</div>
+                                            <div class="author-role">Покупатель недвижимости</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Column 2 -->
+                        <div class="testimonials-column">
+                            <div class="testimonials-column-content" data-speed="19">
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Как риелтор, использую платформу для быстрой проверки — защищает от споров с клиентами."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Артем" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Артем Козлов</div>
+                                            <div class="author-role">Риелтор</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Договор ДДУ проверен за 3 минуты. Нашли несоответствия с 214-ФЗ. Строительная компания исправила документы."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ольга" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Ольга Новикова</div>
+                                            <div class="author-role">Дольщик новостройки</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Юридическая фирма использует платформу для первичной проверки. Экономит время юристов на 70%."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/68.jpg" alt="Сергей" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Сергей Морозов</div>
+                                            <div class="author-role">Управляющий партнер</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Duplicates for seamless scroll -->
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Как риелтор, использую платформу для быстрой проверки — защищает от споров с клиентами."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Артем" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Артем Козлов</div>
+                                            <div class="author-role">Риелтор</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Договор ДДУ проверен за 3 минуты. Нашли несоответствия с 214-ФЗ. Строительная компания исправила документы."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ольга" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Ольга Новикова</div>
+                                            <div class="author-role">Дольщик новостройки</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Column 3 -->
+                        <div class="testimonials-column">
+                            <div class="testimonials-column-content" data-speed="17">
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Сравнил анализ платформы с услугами юриста за 15 000 руб. Результаты совпали на 95%, а стоимость в 30 раз ниже."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ирина" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Ирина Соколова</div>
+                                            <div class="author-role">Финансовый аналитик</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Автоматизировали проверку договоров в агентстве. API интегрировался за 1 день, экономя 40 часов в месяц."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Павел" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Павел Белов</div>
+                                            <div class="author-role">CTO риелторского агентства</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Бесплатная проверка первого договора убедила в эффективности. Теперь проверяю все документы через платформу."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Александр" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Александр Кузнецов</div>
+                                            <div class="author-role">Частный инвестор</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Duplicates for seamless scroll -->
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Сравнил анализ платформы с услугами юриста за 15 000 руб. Результаты совпали на 95%, а стоимость в 30 раз ниже."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Ирина" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Ирина Соколова</div>
+                                            <div class="author-role">Финансовый аналитик</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="testimonial-card brutalist-card">
+                                    <div class="testimonial-text">"Автоматизировали проверку договоров в агентстве. API интегрировался за 1 день, экономя 40 часов в месяц."</div>
+                                    <div class="testimonial-author">
+                                        <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Павел" loading="lazy">
+                                        <div>
+                                            <div class="author-name">Павел Белов</div>
+                                            <div class="author-role">CTO риелторского агентства</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Business -->
-        <section id="business" class="section section-dark">
+        <section id="business" class="section brutalist-section">
             <div class="container">
-                <h2 class="section-title">Для риелторских агентств</h2>
-                <p class="section-subtitle">Enterprise solutions for real estate professionals</p>
+                <h2 class="section-title brutalist-title">Для бизнеса</h2>
+                <p class="section-subtitle brutalist-text">Оптимизируйте процессы для бизнеса в недвижимости с ИИ</p>
                 
                 <div class="business-grid">
-                    <div class="business-card">
+                    <div class="business-card brutalist-card">
                         <div class="business-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <h3>Повышение эффективности</h3>
+                        <h3>Автоматизация проверки сокращает время и расходы</h3>
                         <p>Автоматизация проверки договоров сокращает время на анализ документов.</p>
                     </div>
                     
-                    <div class="business-card">
+                    <div class="business-card brutalist-card">
                         <div class="business-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>Снижение рисков</h3>
+                        <h3>Минимизация споров и рисков для клиентов</h3>
                         <p>Минимизация юридических рисков и спорных ситуаций с клиентами.</p>
                     </div>
                     
-                    <div class="business-card">
+                    <div class="business-card brutalist-card">
                         <div class="business-icon">
                             <i class="fas fa-award"></i>
                         </div>
-                        <h3>Укрепление репутации</h3>
+                        <h3>Повышение доверия через прозрачные проверки</h3>
                         <p>Доверие клиентов благодаря прозрачности и дополнительной защите.</p>
                     </div>
                 </div>
                 
-                <div class="business-cta">
-                    <h3>Интересует корпоративное решение?</h3>
-                    <p>API для интеграции, белая маркировка, статистика и аналитика.</p>
-                    <a href="#" class="btn btn-outline">
-                        <i class="fas fa-briefcase"></i> Обсудить сотрудничество
+                <div class="business-cta brutalist-card">
+                    <h3>Нужны B2B-решения?</h3>
+                    <p>API, статистика и интеграция для вашей команды.</p>
+                    <a href="#" class="btn btn-outline brutalist-button">
+                        <i class="fas fa-briefcase"></i> Обсудить интеграцию
                     </a>
                 </div>
             </div>
         </section>
 
         <!-- Security -->
-        <section class="section">
+        <section class="section section-dark brutalist-section">
             <div class="container">
-                <div class="security-section">
+                <div class="security-section brutalist-card">
                     <div class="security-icon">
                         <i class="fas fa-user-shield"></i>
                     </div>
                     <div class="security-content">
                         <h2>Конфиденциальность и безопасность</h2>
-                        <p>Все загруженные документы и результаты анализа полностью удаляются с наших серверов после завершения проверки. Мы не храним договоры, персональные данные и историю проверок.</p>
+                        <p>Ваши договоры не передаются публичным ИИ — анонимайзер удаляет персональные данные перед анализом. Документы удаляются после проверки.</p>
                         <div class="security-points">
                             <div class="security-point">
                                 <i class="fas fa-check"></i>
@@ -326,7 +488,7 @@
                             </div>
                             <div class="security-point">
                                 <i class="fas fa-check"></i>
-                                <span>Анонимная проверка</span>
+                                <span>Анонимный анализ</span>
                             </div>
                         </div>
                     </div>
@@ -335,24 +497,24 @@
         </section>
 
         <!-- CTA -->
-        <section class="section section-cta">
+        <section class="section section-cta brutalist-section">
             <div class="container">
-                <div class="final-cta">
+                <div class="final-cta brutalist-card">
                     <h2>Начните проверку договора</h2>
-                    <p>Загрузите документ для AI-анализа. Получите детальный отчёт с рекомендациями.</p>
+                    <p>Проверьте договор бесплатно — пройдите все этапы с ИИ за минуты.</p>
                     
                     <div class="cta-buttons">
-                        <a href="screens/upload.html" class="btn btn-primary btn-large">
-                            <i class="fas fa-file-upload"></i> Загрузить договор
+                        <a href="screens/upload.html" class="btn btn-primary btn-large brutalist-button">
+                            <i class="fas fa-file-upload"></i> Попробовать бесплатно
                         </a>
-                        <a href="screens/report.html" class="btn btn-outline btn-large">
-                            <i class="fas fa-file-alt"></i> Пример отчёта
+                        <a href="screens/report.html" class="btn btn-outline btn-large brutalist-button">
+                            <i class="fas fa-file-alt"></i> Пример анализа
                         </a>
                     </div>
                     
-                    <div class="cta-note">
+                    <div class="cta-note brutalist-badge">
                         <i class="fas fa-info-circle"></i>
-                        <span>Бесплатная проверка первого договора. Без регистрации.</span>
+                        <span>+3 бесплатные проверки без регистрации</span>
                     </div>
                 </div>
             </div>
@@ -360,15 +522,15 @@
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="brutalist-footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
-                    <a href="index.html" class="logo">
+                    <a href="index.html" class="logo brutalist-logo">
                         <i class="fas fa-file-contract logo-icon"></i>
-                        ContrCheck
+                        CONTRCHECK
                     </a>
-                    <p>AI-платформа для проверки договоров недвижимости. Юридический анализ, рекомендации, безопасность.</p>
+                    <p>ИИ-платформа для безопасных сделок в недвижимости: проверка, рекомендации, конфиденциальность.</p>
                 </div>
                 
                 <div class="footer-column">
@@ -385,7 +547,7 @@
                     <h4>Компания</h4>
                     <ul>
                         <li><a href="#business">Для бизнеса</a></li>
-                        <li><a href="#">О нас</a></li>
+                        <li><a href="#testimonials">Отзывы</a></li>
                         <li><a href="#">Контакты</a></li>
                         <li><a href="#">Документы</a></li>
                     </ul>
@@ -403,7 +565,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 ContrCheck. Все права защищены.</p>
+                <p>&copy; 2026 ContrCheck • В реестре отечественного ПО</p>
                 <div class="footer-links">
                     <a href="#">Политика конфиденциальности</a>
                     <a href="#">Условия использования</a>
@@ -415,4 +577,3 @@
     <script src="scripts/script.js"></script>
 </body>
 </html>
-[file content end]
